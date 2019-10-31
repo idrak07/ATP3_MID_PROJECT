@@ -1,4 +1,5 @@
 var express=require('express');
+var organModel = require('./../organizationmodel/organization');
 var router=express.Router();
 
 router.get('/',(req,res)=>{
@@ -29,12 +30,12 @@ router.post('/organization', function(request, response){
 		
 	};
 
-	userModel.insert(user, function(status){
+	organModel.insert(user, function(status){
 		
 		if(status){
-			response.redirect('/user/userlist');
+			response.redirect('/');
 		}else{
-			response.redirect('/user/adduser');
+			response.redirect('/register/organization');
 		}
 	});
 	
