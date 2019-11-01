@@ -9,6 +9,7 @@ var admin = require('./controllers/admin');
 var logout = require('./controllers/logout');
 var register  = require ('./controllers/register'); 
 var student = require ('./controllers/student');
+var organization=require('./controllers/organization');
 var app = express();
 
 
@@ -24,16 +25,14 @@ app.use('/admin',admin);
 app.use('/logout', logout);
 app.use('/register',register);
 app.use('/student', student);
+app.use('/organization',organization);
 
 
+
+//ROUTER
 app.get('/', function(request, response){
-    var username=request.cookies['username'];
-    if(username!=null)
-        response.redirect('/student');
-    else
-	    response.redirect("/login");
+	response.redirect("/login");
 });
-
 
 app.get('/test/your/:name/:id', function(request, response){
 	var id = request.params.id;
