@@ -1,6 +1,6 @@
-var window = require ('window');
+//var window = require ('window');
 var express = require('express');
-var alert = require('alert-node');
+//var alert = require('alert-node');
 var userModel = require('./../models/user-model');
 var router = express.Router();
 router.get('/', function(request, response){

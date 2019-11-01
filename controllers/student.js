@@ -26,6 +26,8 @@ router.get('/',(req,res)=>{
 router.get('/profile',(req,res)=>{
     var loggedin=req.cookies['username'];
 	studentmodel.getByUsername(loggedin,(result)=>{
+
+        console.log(result);
         res.render('student/profile',result);
 	});
     

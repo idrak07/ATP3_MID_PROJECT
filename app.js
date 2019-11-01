@@ -26,10 +26,14 @@ app.use('/register',register);
 app.use('/student', student);
 
 
-//ROUTER
 app.get('/', function(request, response){
-	response.redirect("/login");
+    var username=request.cookies['username'];
+    if(username!=null)
+        response.redirect('/student');
+    else
+	    response.redirect("/login");
 });
+
 
 app.get('/test/your/:name/:id', function(request, response){
 	var id = request.params.id;
