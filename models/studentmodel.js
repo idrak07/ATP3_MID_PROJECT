@@ -24,19 +24,18 @@ module.exports = {
 			}
 		});
 },
-validate: function(user, callback){
-	var sql ="select * from userlogin where userid=? and password=?";
-	db.getResults(sql, [user.username, user.password],(result)=>{
-
-		if(result.length > 0){
-			console.log(result[0]);
-			callback(result[0].status);
-		}
-		else{
-			callback(4);
-		}
-	});	
-},
+	validate: function(user, callback){
+        var flag=0;
+        var sql ="select * from student where username='"+user.username+"' and password='"+user.password+"'";
+		db.getResults(sql, function(result){
+			if(result.length > 0){
+				console.log(result[0]);
+				callback(true,result[0].status);
+			}else{
+				callback(false,-1);
+			}
+		});	
+	},
 	getAll: function(callback){
 		var sql = "select * from student";
 		
@@ -60,17 +59,6 @@ validate: function(user, callback){
 				callback([]);
 			}
 		});	
-	},
-	insertintostudent: function(user, callback){
-		var sql ="insert into student(name,username,password,phone,email,e1) values('"+user.name+"','"+ user.username+"', '"+user.password+"','"+user.phone+"','"+user.email+"',3)";
-		var sql0 ="insert into userlogin(userid,password,status) values('"+user.username+"','"+user.password+"',1)";
-		db.execute(sql, function(status){
-			if(status){
-				db.execute(sql0, function(status){
-					callback(status);
-				});
-			}
-		});
 	},
 	update: function(user, callback){
 		var sql ="update student set username='"+ user.username+"', password='"+user.password+"' where id="+user.id;

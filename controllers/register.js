@@ -1,4 +1,5 @@
 var express=require('express');
+var usermodel=require('./../models/usermodel');
 var router=express.Router();
 router.get('/',(req,res)=>{
     res.render('register/index');
@@ -8,20 +9,30 @@ router.get('/student',(req,res)=>{
     res.render('register/student');
 });
 router.post('/student',(req,res)=>{
-    var obj={
+    var user={
                 name :req.body.name,
+                username:req.body.username,
                 email:req.body.email,
                 phone:req.body.phone,
                 password:req.body.password,
                 conPassword:req.body.confirmpassword
     };
-    if(obj.password!=obj.conPassword)
+    var flagstudent=0;
+    var flaglogin=0;
+    if(user.password!=user.conPassword)
     {
         console.log('not matched');
         res.redirect('/register/student');
     }
     else{
-
+        
+        usermodel.insertintostudent(user,(status)=>{
+            if(status) {
+                console.log('Successfully Added to Student Table');
+                res.redirect('/login');
+            }
+            else console.log('Failed to insert into student');
+        });
     }
 });
 

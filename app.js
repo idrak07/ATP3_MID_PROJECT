@@ -1,30 +1,10 @@
-/*
-var login=require('./controllers/login');
-var member=require('./controllers/member');
-var moderator=require('./controllers/moderator');
-var admin=require('./controllers/admin');
-var usermodel=require('./models/usermodel');
-
-
-app.set('view engine', 'ejs');
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(cookieParser());
-app.use('/login',login);
-app.use('/member',member);
-app.use('/admin',admin);
-app.use('/moderator',moderator);
-app.use('/logout',logout);
-
-*/
-
-
 var express=require('express');
 var ejs=require('ejs');
-var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
-var multer = require('multer');
-var upload = multer({ dest: '/tmp/' });
-var port = 500;
+var bodyParser=require('body-parser');
+var cookieParser=require('cookie-parser');
+var multer=require('multer');
+var upload=multer({ dest: '/tmp/' });
+var port=500;
 var app=express();
 var usermodel=require('./models/usermodel');
 var register=require('./controllers/register');
@@ -45,10 +25,9 @@ app.use('/logout',logout);
 app.use('/login',login);
 app.use('/student',student);
 /*app.use('/organization',organization);
-app.use('/student',student);
 app.use('/admin',admin);
 app.use('/university',university);
-
+*/
 app.get('/',(req,res)=>{
     var loggedinuser=req.cookies['username']
     if(loggedinuser!= null){
@@ -65,11 +44,10 @@ app.get('/',(req,res)=>{
         res.redirect('/login');
     }
 });
-*/
 app.get('/',(req,res)=>{
     res.render('login/loginpage');
 });
 
-app.listen(port, ()=>{
+app.listen(port,()=>{
     console.log('app is running in port: '+port.toString());
 });
