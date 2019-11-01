@@ -6,7 +6,9 @@ var cookieParser = require('cookie-parser');
 var ejs = require('ejs');
 var login = require('./controllers/login');
 var admin = require('./controllers/admin');
-var logout = require('./controllers/logout'); 
+var logout = require('./controllers/logout');
+var register  = require ('./controllers/register'); 
+var student = require ('./controllers/student');
 var app = express();
 
 
@@ -20,6 +22,8 @@ app.use(cookieParser());
 app.use('/login', login);
 app.use('/admin',admin);
 app.use('/logout', logout);
+app.use('/register',register);
+app.use('/student', student);
 
 
 //ROUTER

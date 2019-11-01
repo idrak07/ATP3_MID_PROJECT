@@ -1,5 +1,5 @@
 var express=require('express');
-var usermodel=require('./../models/usermodel');
+var usermodel=require('./../models/user-model');
 var router=express.Router();
 router.get('/',(req,res)=>{
     res.render('register/index');
@@ -17,8 +17,6 @@ router.post('/student',(req,res)=>{
                 password:req.body.password,
                 conPassword:req.body.confirmpassword
     };
-    var flagstudent=0;
-    var flaglogin=0;
     if(user.password!=user.conPassword)
     {
         console.log('not matched');

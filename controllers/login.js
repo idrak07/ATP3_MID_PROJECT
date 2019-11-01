@@ -24,7 +24,7 @@ router.post('/', function(request, response){
 		else if(status==1){
 			response.cookie('username', user.username);
 			response.cookie('userstatus', status);
-			//response.redirect('/student');
+			response.redirect('/student');
 		}
 		else if(status==2){
 			response.cookie('username', user.username);
@@ -37,7 +37,7 @@ router.post('/', function(request, response){
 			//response.redirect('/organization');
 		}
 		else{
-			alertify('invalid username/password');	
+			//response.send('invalid username/password');	
 			response.redirect("/login");	
 		}
 	});
