@@ -62,7 +62,7 @@ module.exports = {
 	},
 	insert: function(user, callback){
 
-		var sql ="insert into student(name,username,password,phone,email,) values('"+user.username+"','"+ user.username+"', '"+user.password+"',"+3+")";
+		//var sql ="insert into student(name,username,password,phone,email,) values('"+user.name+"','"+ user.username+"', '"+user.password+"',"+,"+3+")";
 		db.execute(sql, function(status){
 			callback(status);
 		});

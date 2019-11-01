@@ -1,7 +1,5 @@
 var express=require('express');
-var organModel = require('./../organizationmodel/organization');
 var router=express.Router();
-
 router.get('/',(req,res)=>{
     res.render('register/index');
 });
@@ -9,35 +7,29 @@ router.get('/',(req,res)=>{
 router.get('/student',(req,res)=>{
     res.render('register/student');
 });
+router.post('/student',(req,res)=>{
+    var obj={
+                name :req.body.name,
+                email:req.body.email,
+                phone:req.body.phone,
+                password:req.body.password,
+                conPassword:req.body.confirmpassword
+    };
+    if(obj.password!=obj.conPassword)
+    {
+        console.log('not matched');
+        res.redirect('/register/student');
+    }
+    else{
+
+    }
+});
 
 router.get('/university',(req,res)=>{
     res.render('register/university');
 });
 
 router.get('/organization',(req,res)=>{
-        res.render('register/organization');
-});
-router.post('/organization', function(request, response){
-
-	var user = {
-        organizationName: request.body.Organizationname,
-        organizationCode:request.body.Organizationcode,
-        address: request.body.Organizationaddress,
-        email:request.body.Emailaddress,
-        contact:request.body.Organizationcontact,
-		username: request.body.username,
-		password: request.body.password,
-		
-	};
-
-	organModel.insert(user, function(status){
-		
-		if(status){
-			response.redirect('/');
-		}else{
-			response.redirect('/register/organization');
-		}
-	});
-	
+    res.render('register/organization');
 });
 module.exports = router;

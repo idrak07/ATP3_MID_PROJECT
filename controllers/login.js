@@ -11,23 +11,26 @@ router.post('/',(req,res)=>{
         password: req.body.password
     }
     usermodel.validate(userobj,(exist,status)=>{
-        if(exist){
+        if(exist)
+        {
             res.cookie('username', req.body.username);
             if(status==1)
-			{
                 res.redirect('/admin');
-            }
-            else if(status==2){
-                res.redirect('/moderator');
-            }
-            else if(status==3){
-                res.redirect('/member');
-            }
-		}else{
-			res.send('invalid username/password');		
+            else if(status==2)
+                res.redirect('/student');
+            else if(status==3)
+                res.redirect('/university');
+            else if(status==3)
+                res.redirect('/organization');
+            else{}
+        }
+        else{
+            //res.send('invalid username/password');	
+            res.redirect('/student');	
 		}
     });
 
+    
 });
 
 module.exports=router;
