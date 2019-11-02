@@ -4,8 +4,8 @@ module.exports = {
 
 	getById: function(id, callback){
 
-			var sql = "select * from organization where id="+id;
-			db.getResults(sql, function(result){
+			var sql = "select * from organization where username="+id;
+			db.getResults(sql,[], function(result){
 			
 				if(result.length > 0 ){
 					callback(result[0]);
@@ -18,9 +18,9 @@ module.exports = {
 	getByUsername: function(username, callback){
 		var sql = "select * from organization where username='"+username+"'";
 
-		db.getResults(sql, function(result){
+		db.getResults(sql, [],function(result){
 			if(result.length > 0 ){
-				callback(result[0]);
+				callback(result);
 			}else{
 				callback([]);
 			}
@@ -62,20 +62,30 @@ module.exports = {
 			}
 		});	
 	},
-	insertOrg: function(user, callback){
-
-		var sql ="insert into organization (orName,orCode,address,email,contact,username,passward) values('"+user.organizationName+"','"+user.organizationCode+"','"+user.address+"','"+user.email+"','"+user.contact+"','"+user.username+"', '"+user.password+"')";
-		db.execute(sql, function(status){
+	insertOrg: function(user,callback){
+			 
+		var sql="INSERT INTO `organization`(`orName`, `orCode`, `address`, `email`, `contact`,`username`, `password`,`status`) VALUES (?,?,?,?,?,?,?,?)";
+		//var sql ="insert into organization (orName,orCode,address,email,contact,username,passward) values('"+user.organizationName+"','"+user.organizationCode+"','"+user.address+"','"+user.email+"','"+user.contact+"','"+user.username+"', '"+user.password+"')";
+		db.execute(sql,[user.organizationName,user.organizationCode,user.address,user.email,user.contact,user.username,user.password,3], function(status){
 			callback(status);
 		});
 		
 	},
-	insertLogin: function(user, callback){
-
-		var sql ="insert into userlogin (userid,password) values('"+user.username+"', '"+user.password+"')";
-		db.execute(sql, function(status){
-			callback(status);
+	insertOeganizationLogin: function(user, callback){
+		var sql1="INSERT INTO `organization`(`orName`, `orCode`, `address`, `email`, `contact`,`username`, `password`,`status`) VALUES (?,?,?,?,?,?,?,?)";
+		var sql2= "INSERT INTO `userlogin`(`userid`, `password`, `status`) VALUES (?,?,?)";
+		db.execute(sql1,[user.organizationName,user.organizationCode,user.address,user.email,user.contact,user.username,user.password,3], function(status){
+			if(status)
+			{
+				db.execute(sql2,[user.username,user.password,3], function(status){
+					callback(status);
+				})
+			}
+			
 		});
+		
+		//var sql1111 ="insert into userlogin (userid,password) values('"+user.username+"', '"+user.password+"')";
+		;
 		
 	},
 	update: function(user, callback){

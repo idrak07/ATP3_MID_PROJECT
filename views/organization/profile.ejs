@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home page</title>
+</head>
+<body>
+	<h1>PROFILE</h1>
+	<a href="/organization">Back</a> | 
+	<a href="/logout">logout</a> |
+	<a href="/organization/Update/<%= users[0].ID %>">Update</a> 
+					
+	
+	<table border="1">
+		<tr>
+			<td>ID</td>
+			<td><%= users[0].ID%></td>
+		</tr>
+		<tr>
+			<td>Organization Name</td>
+			<td><%= users[0].orName%></td>
+		</tr>
+		<tr>
+			<td>Organization Code</td>
+			<td><%= users[0].orCode%></td>			
+		</tr>
+		<tr>
+			<td>Organization Address</td>
+			<td><%= users[0].address%></td>
+		</tr>
+		<tr>
+			<td>Email</td>
+			<td><%= users[0].email%></td>
+		</tr>
+		<tr>
+			<td>Phone Number</td>
+			<td><%= users[0].contact%></td>
+		</tr>
+		<tr>
+			<td>Username</td>
+			<td><%= users[0].username %></td>
+		</tr>
+		<tr>
+			<td>Password</td>
+			<td><%= users[0].password %></td>	
+		</tr>	
+	
+
+	</table>
+
+
+</body>
+</html>
