@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Profile</title>
+    <title>Edit Profile</title>
     <style>
         .topnav {
                 background-color: #333;
@@ -44,51 +44,35 @@
                 <a href="/student/">B</a>
                 <a href="/logout">Log Out</a>
             </div>
-
-            
+            <div align="right">
+                    <a href="/student/profile">Back</a>
+            </div>
+<form method="POST">          
     <center>
-        <table>
+            <table>
             <tr>
-                <td>Name:</td>
-                <td> <%= name %> </td>
-                <td><button onclick="window.location.href = 'http://localhost:500/student/editprofile/name'">Edit</button></td>
+                <th>
+                    Current Info
+                </th>
+                <th>
+                    Update
+                </th>
             </tr>
             <tr>
+                <td>Username: <%= username %> </td>
                 <td>
-                    Email:
+                        <input type="text" name="username">
                 </td>
-                <td>
-                    <%= email %>
-                </td>
-                <td><button onclick="window.location.href = 'http://localhost:500/student/editprofile/email'">Edit</button></td>
             </tr>
             <tr>
-                <td>
-                    Contact:
-                </td>
-                <td>
-                    <%= phone %>
-                </td>
-                <td><button onclick="window.location.href = 'http://localhost:500/student/editprofile/phone'">Edit</button></td>
-            </tr>
-            <tr>
-                 <td>
-                    Username:
-                </td>
-                <td>
-                    <%= username %>
-                </td>
-                <td><button onclick="window.location.href = 'http://localhost:500/student/editprofile/username'">Edit</button></td>
-            </tr>
-
-            <tr>
-                <td colspan="3">
-                   <center>
-                       <button onclick="window.location.href = 'http://localhost:500/student/editprofile/updatepassword'">Update Password</button>
-                   </center> 
-                </td>
+                    <td colspan="2">
+                            <center>
+                                    <input type="submit" name="submit" value="Confirm Edit">
+                             </center>
+                        </td>
             </tr>
         </table>
     </center>
+</form>
 </body>
 </html>

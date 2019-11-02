@@ -1,6 +1,5 @@
 var express=require('express');
-var organModel = require('../models/organization-model');
-//var usermodel=require('./../models/user-model');
+var usermodel=require('./../models/user-model');
 var router=express.Router();
 router.get('/',(req,res)=>{
     res.render('register/index');
@@ -24,7 +23,6 @@ router.post('/student',(req,res)=>{
         res.redirect('/register/student');
     }
     else{
-        
         usermodel.insertintostudent(user,(status)=>{
             if(status) {
                 console.log('Successfully Added to Student Table');
@@ -40,38 +38,6 @@ router.get('/university',(req,res)=>{
 });
 
 router.get('/organization',(req,res)=>{
-        res.render('register/organization');
-});
-router.post('/organization', function(request, response){
-
-	var user = {
-        organizationName: request.body.Organizationname,
-        organizationCode:request.body.Organizationcode,
-        address: request.body.Organizationaddress,
-        email:request.body.Emailaddress,
-        contact:request.body.Organizationcontact,
-		username: request.body.username,
-		password: request.body.password,
-		confirmpass:request.body.confirmpassword,
-		
-	};
-	
-	if(user.password==user.confirmpass)
-	{
-		organModel.insertOeganizationLogin(user, function(status){
-			console.log('or',status);
-			if(status){
-				response.redirect('/login');
-			}else{
-				response.redirect('/register/organization');
-			}
-		});
-	}
-	else{
-		console.log('passward not');
-	}
-	
-
-	
+    res.render('register/organization');
 });
 module.exports = router;

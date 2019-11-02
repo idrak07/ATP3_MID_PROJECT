@@ -1,65 +1,60 @@
-/*
-var login=require('./controllers/login');
-var logout=require('./controllers/logout');
-var member=require('./controllers/member');
-var moderator=require('./controllers/moderator');
-var admin=require('./controllers/admin');
-var usermodel=require('./models/usermodel');
-
-
-app.set('view engine', 'ejs');
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(cookieParser());
-app.use('/login',login);
-app.use('/member',member);
-app.use('/admin',admin);
-app.use('/moderator',moderator);
-app.use('/logout',logout);
-app.get('/',(req,res)=>{
-    var loggedinuser=req.cookies['username']
-    if(loggedinuser!= null){
-        usermodel.getByUsername(loggedinuser,(result)=>{
-            if(result.status==1)
-                res.redirect('/admin');
-            else if(result.status==2)
-                res.redirect('/moderator');
-            else if(result.status==3)
-                res.redirect('/member');
-        });
-    }
-    else{
-        res.redirect('/login');
-    }
-});
-*/
-
-
-var express=require('express');
-var ejs=require('ejs');
+//DECLARATION
+var express = require('express');
 var bodyParser = require('body-parser');
+var expSession = require('express-session');
 var cookieParser = require('cookie-parser');
-var multer = require('multer');
-var upload = multer({ dest: '/tmp/' });
-var port = 500;
-var app=express();
-var register=require('./controllers/register');
-var organization=require('./controllers/organization');
-var login =require('./controllers/login');
-var logout=require('./controllers/logout');
+var ejs = require('ejs');
+var login = require('./controllers/login');
+var admin = require('./controllers/admin');
+var logout = require('./controllers/logout');
+var register  = require ('./controllers/register'); 
+var student = require ('./controllers/student');
+var app = express();
 
 
+
+//CONFIGURATION
 app.set('view engine', 'ejs');
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(cookieParser());
-app.use('/register',register);
-app.use('/organization',organization);
-app.use('/login',login);
-app.use('/logout',logout);
 
-app.get('/',(req,res)=>{
-    res.render('login/loginPage');
+//MIDDLEWARE
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(expSession({secret:'ScholarShip Portal Secret Values', saveUninitialized:true, resave: false}));
+app.use(cookieParser());
+app.use('/login', login);
+app.use('/admin',admin);
+app.use('/logout', logout);
+app.use('/register',register);
+app.use('/student', student);
+app.use(express.static('/public'));
+
+
+app.get('/', function(req, res){
+		var username=req.cookies['username'];
+		var status=req.cookies['userstatus'];
+		if(username!=null)
+		{
+			if(status==0)
+				res.redirect('/admin');
+			else if(status==1)
+				res.redirect('student');
+			else if(status==2)
+				res.redirect('university');
+			else
+				req.redirect('/organization');
+		}
+		else
+			res.redirect('/login');
 });
 
-app.listen(port, ()=>{
-    console.log('app is running in port: '+port.toString());
+app.get('/test/your/:name/:id', function(request, response){
+	var id = request.params.id;
+	var name = request.params.name;
+	response.send(id+" "+name);
+
+});
+
+
+//SERVER STARTUP
+app.listen(500, function(){
+	console.log('server started at 500...\nScholarship Portal Is Open Now !');
 });
