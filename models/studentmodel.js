@@ -15,11 +15,11 @@ module.exports = {
 	},
 
 	getByUsername: function(username, callback){
-		console.log(username);
+		console.log(username+"abcd");
 		var sql = "select * from student where username=?";
-		db.getResults(sql,[username] ,  function(result){
+		db.getResults(sql,[username],function(result){
 			if(result.length > 0 ){
-				console.log('xyz'+result[0].status);
+				console.log('xyz name: '+result[0].name);
 				callback(result[0]);
 			}else{
 				callback([]);

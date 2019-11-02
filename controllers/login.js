@@ -1,10 +1,14 @@
-var window = require ('window');
+//var window = require ('window');
 var express = require('express');
-var alert = require('alert-node');
+//var alert = require('alert-node');
 var userModel = require('./../models/user-model');
 var router = express.Router();
-router.get('/', function(request, response){
-	response.render('login/index');
+router.get('*', function(req, res){
+	var username=req.cookies['username'];
+	if(username!=null)
+		res.redirect('/logout');
+	else
+		res.render('login/index');
 });
 
 router.post('/', function(request, response){
@@ -34,7 +38,7 @@ router.post('/', function(request, response){
 		else if(status==3){
 			response.cookie('username', user.username);
 			response.cookie('userstatus', status);
-			response.redirect('/organization');
+			//response.redirect('/organization');
 		}
 		else{
 			//response.send('invalid username/password');	

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Profile</title>
+    <title>Edit Profile</title>
     <style>
         .topnav {
                 background-color: #333;
@@ -45,14 +45,28 @@
                 <a href="/logout">Log Out</a>
             </div>
             <div align="right">
-                    <a href="/student/editprofile">Edit Profile</a>
+                    <a href="/student/profile">Back</a>
             </div>
             
     <center>
         <table>
             <tr>
+                <th>
+                    ABC
+                </th>
+                <th>
+                    Current Info
+                </th>
+                <th>
+                    Edit
+                </th>
+            </tr>
+            <tr>
                 <td>Name:</td>
                 <td> <%= name %> </td>
+                <td>
+                        <input type="text" name="name">
+                </td>
             </tr>
             <tr>
                 <td>
@@ -60,6 +74,9 @@
                 </td>
                 <td>
                     <%= email %>
+                </td>
+                <td>
+                        <input type="text" name="email">
                 </td>
             </tr>
             <tr>
@@ -69,6 +86,9 @@
                 <td>
                     <%= phone %>
                 </td>
+                <td>
+                        <input type="text" name="phone">
+                </td>
             </tr>
             <tr>
                  <td>
@@ -76,6 +96,9 @@
                 </td>
                 <td>
                     <%= 2222 %>
+                </td>
+                <td>
+                      !!!
                 </td>
             </tr>
         </table>
