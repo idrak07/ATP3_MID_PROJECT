@@ -92,7 +92,7 @@ module.exports = {
 	},
 	editusername:(user,callback)=>{
 		var sql="update student set username=? where username=?";
-		var sql="update userlogin set username=? where username=?"
+		var sql1="update userlogin set userid=? where userid=?"
 		db.execute(sql,[user.newusername,user.username],(status)=>{
 			if(status){
 				db.execute(sql1,[user.newusername,user.username], function(status){
@@ -104,7 +104,7 @@ module.exports = {
 
 	updatepassword:(user,callback)=>{
 		var sql="update student set password=? where username=?";
-		var sql1="update userlogin set password=? where username=?";
+		var sql1="update userlogin set password=? where userid=?";
 		db.execute(sql,[user.newpassword,user.username],(status)=>{
 			if(status){
 				db.execute(sql1,[user.newpassword,user.username], function(status){
