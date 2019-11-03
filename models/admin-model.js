@@ -17,6 +17,20 @@ module.exports = {
 			}
 		});	
 	},
+	getuserbyname: function(name, callback){
+
+		var sql ="SELECT * FROM `admininfo` WHERE `username` LIKE ?";
+
+		db.getResults(sql,['%'+name+'%'], function(result){
+			if(result.length > 0){
+				console.log(result);
+				callback(true , result);
+			}
+			else{
+				callback(false, null);
+			}
+		});	
+	},
 }
 
 

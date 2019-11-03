@@ -95,7 +95,7 @@ router.get('/search', function(request, response){
 			response.redirect('/logout');
 		}	
 });
-router.get('/search/byid', function(request, response){
+router.get('/search/id', function(request, response){
 
 		if(request.cookies['username'] != null){
 			if(request.cookies['userstatus']==0)
@@ -109,7 +109,21 @@ router.get('/search/byid', function(request, response){
 			response.redirect('/logout');
 		}	
 });
-router.get('/modifyadmin/am_i/:userid', function(request, response){
+router.get('/search/name', function(request, response){
+
+		if(request.cookies['username'] != null){
+			if(request.cookies['userstatus']==0)
+			{
+				response.render('admin/searchbyname');
+			}		
+			else{
+				response.redirect('/logout');
+			}
+		}else{
+			response.redirect('/logout');
+		}	
+});
+router.get('/modifyadmin/:userid', function(request, response){
 
 		if(request.cookies['username'] != null){
 			if(request.cookies['userstatus']==0)
@@ -122,7 +136,7 @@ router.get('/modifyadmin/am_i/:userid', function(request, response){
 					}
 					else
 					{
-						response.send('No results');
+						response.redirect('/admin/search');
 					}
 				})
 			}		
@@ -134,7 +148,33 @@ router.get('/modifyadmin/am_i/:userid', function(request, response){
 		}	
 });
 
-router.get('/modifyadmin/am_i', function(request, response){
+router.get('/namelist/:name', function(request, response){
+
+		if(request.cookies['username'] != null){
+			if(request.cookies['userstatus']==0)
+			{
+				var name=request.params.name;
+				adminModel.getuserbyname(name,function(exist , results){
+					if(exist){
+						response.render('admin/namelist',{userdetails: results});
+						//response.render('admin/namelist',userdetails);
+					}
+					else
+					{
+						response.redirect('/admin/search');
+					}
+				})
+			}		
+			else{
+				response.redirect('/logout');
+			}
+		}else{
+			response.redirect('/logout');
+		}	
+});
+
+
+router.get('/modifyadmin', function(request, response){
 
 		if(request.cookies['username'] != null){
 			if(request.cookies['userstatus']==0)
@@ -148,14 +188,32 @@ router.get('/modifyadmin/am_i', function(request, response){
 			response.redirect('/logout');
 		}	
 });
-router.post('/search/byid', function(request, response){
+router.post('/search/id', function(request, response){
 
 		if(request.cookies['username'] != null){
 			if(request.cookies['userstatus']==0)
 			{
 				var userid = request.body.id;
 				//response.send(userid);
-				response.redirect('/admin/modifyadmin/am_i/'+userid);
+				response.redirect('/admin/modifyadmin/'+userid);
+				
+			}		
+			else{
+				response.redirect('/logout');
+			}
+		}else{
+			response.redirect('/logout');
+		}	
+});
+router.post('/search/name', function(request, response){
+
+		if(request.cookies['username'] != null){
+			if(request.cookies['userstatus']==0)
+			{
+				var name = request.body.name;
+				response.redirect('/admin/namelist/'+name);
+				//response.send(username);
+				//response.redirect('/admin/modifyadmin/am_i/'+userid);
 				
 			}		
 			else{

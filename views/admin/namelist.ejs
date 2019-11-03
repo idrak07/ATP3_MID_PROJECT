@@ -46,16 +46,17 @@ li a:hover {
 				</ul>
 			</td>
 		</tr>
+		<% for(var i=0; i < userdetails.length; i++){ %>
 		<tr>
-			<td height="200px" align="center" valign="middle">
+			<td height="100px" align="center" valign="middle">
 
 				<font size="5">
-					<a href="/admin/search/id">Search By Id</a><br><br>
-					<a href="/admin/search/name">Search By Name</a>
-				</font>
-				
+					<a href="/admin/modifyadmin/<%= userdetails[i].userid %>"><%= userdetails[i].username %></a><br><br>
+				</font>			
 			</td>
 		</tr>
+		<% } %>
+	
 	</table>
 
 
