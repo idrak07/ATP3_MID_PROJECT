@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>offer page</title>
+</head>
+<body>
+	<h1>SEARCH OFFER</h1>
+	<a href="/organization/userlist">Back</a> | 
+    <a href="/logout">logout</a>
+    <p>
+         <form method="post">
+        <table border="1">
+                    <tr>
+                            <td>ID:</td>
+                            <td><input type="text" name="id"></td>
+                            
+                        </tr>
+                        <tr>
+                                <td colspan="2">
+                                    <center>
+                                            <input type="submit" name="search" value="Search">
+                                    </center>
+                                </td>
+                            </tr> 
+                    
+            </table>
+         </form>
+            
+    </p>
+    
+	<table border="1">
+        
+		<tr>
+			<td>ID</td>
+			<td> Name</td>
+            <td>University</td>
+            <td>Email</td>
+            <td>Number</td>           
+            <td>Program</td>
+            <td>Cgpa</td>
+			
+		</tr>
+
+	<% for(var i=0; i < users.length; i++){ %>
+
+		<tr>
+			<td><%= users[i].ID %></td>
+			<td><%= users[i].name %></td>
+            <td><%= users[i].university %></td>
+            <td><%= users[i].email %></td>
+            <td><%= users[i].number%></td>
+            <td><%= users[i].program%></td>
+            <td><%= users[i].cgpa %></td>
+			
+		</tr>
+	<% } %>
+
+	</table>
+
+
+</body>
+</html>
