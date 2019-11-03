@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home page</title>
+</head>
+<body>
+	<h1>PROFILE</h1>
+	<a href="/organization/offershow">Back</a> | 
+	<a href="/logout">logout</a> 
+					
+	
+	<table border="1">
+		<tr>
+			<td>ID</td>
+			<td><%= users[0].ID%></td>
+		</tr>
+		<tr>
+			<td>Organization User Name</td>
+			<td><%= users[0].orName%></td>
+		</tr>
+		<tr>
+			<td>University</td>
+			<td><%= users[0].university%></td>			
+		</tr>
+		<tr>
+			<td>Program </td>
+			<td><%= users[0].program%></td>
+		</tr>
+		<tr>
+			<td>Number of Student</td>
+			<td><%= users[0].number%></td>
+		</tr>
+		<tr>
+			<td>Scholarship</td>
+			<td><%= users[0].scholarship%></td>
+		</tr>
+		<tr>
+			<td>Application Deadline</td>
+			<td><%= users[0].date %></td>
+		</tr>
+			
+	
+
+	</table>
+
+
+</body>
+</html>

@@ -1,10 +1,9 @@
-var window = require ('window');
-var express = require('express');
-var alert = require('alert-node');
-var userModel = require('./../models/user-model');
-var router = express.Router();
-router.get('/', function(request, response){
-	response.render('login/index');
+var db=require('./../models/db');
+var express=require('express');
+var router=express.Router();
+var userModel=require('./../models/usermodel');
+router.get('/',(req,res)=>{
+    res.render('login/loginpage');
 });
 
 router.post('/', function(request, response){
@@ -15,7 +14,7 @@ router.post('/', function(request, response){
 	};
 
 	userModel.validate(user, function(status){
-		console.log(status);
+		
 		if(status==0){
 			response.cookie('username', user.username);
 			response.cookie('userstatus', status);
@@ -45,5 +44,3 @@ router.post('/', function(request, response){
 });
 
 module.exports = router;
-
-

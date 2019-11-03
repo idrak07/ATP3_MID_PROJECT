@@ -53,7 +53,7 @@ module.exports = {
 					}
 				});
 				connection.end(function(err){
-					console.log('connection end...');
+					console.log('connection end...3');
 				});
 			}else{
 				connection.query(sql, function (error, results) {
@@ -64,7 +64,7 @@ module.exports = {
 					}
 				});
 				connection.end(function(err){
-					console.log('connection end...');
+					console.log('connection end...2');
 				});
 			}
 		});
