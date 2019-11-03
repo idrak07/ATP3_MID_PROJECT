@@ -148,6 +148,35 @@ router.get('/modifyadmin/:userid', function(request, response){
 		}	
 });
 
+router.post('/modifyadmin/:userid', function(request, response){
+
+		if(request.cookies['username'] != null){
+			if(request.cookies['userstatus']==0)
+			{
+				var userid=request.params.userid;
+				var user = {
+					username: request.body.username,
+					salary: request.body.salary,
+					email: request.body.email,
+					userid:request.params.userid
+				};
+				adminModel.updateadmindetails(user, function(status){
+		
+					if(status){
+						response.send('updated ');
+					}else{
+						response.send('something Wrong');
+					}
+				});
+			}		
+			else{
+				response.redirect('/logout');
+			}
+		}else{
+			response.redirect('/logout');
+		}	
+});
+
 router.get('/namelist/:name', function(request, response){
 
 		if(request.cookies['username'] != null){

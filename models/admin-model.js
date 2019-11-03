@@ -31,6 +31,13 @@ module.exports = {
 			}
 		});	
 	},
+	updateadmindetails: function(user, callback){
+		var sql ="UPDATE `admininfo` SET `username`=?,`salary`=?,`email`=? WHERE `userid`=?";
+	
+		db.execute(sql, [user.username, user.salary, user.email,user.userid], function(status){
+			callback(status);
+		});
+	}
 }
 
 
