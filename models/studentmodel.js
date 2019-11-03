@@ -15,10 +15,11 @@ module.exports = {
 	},
 
 	getByUsername: function(username, callback){
+		console.log(username);
 		var sql = "select * from student where username=?";
-		db.getResults(sql,[username],function(result){
+		db.getResults(sql,[username] ,  function(result){
 			if(result.length > 0 ){
-				console.log('xyz name: '+result[0].name);
+				console.log('xyz'+result[0].status);
 				callback(result[0]);
 			}else{
 				callback([]);
@@ -69,49 +70,6 @@ module.exports = {
 		db.execute(sql, function(status){
 			callback(status);
 		});
-	},
-	editname:(user,callback)=>{
-		var sql="update student set name=? where username=?";
-		db.execute(sql,[user.newname,user.username],(status)=>{
-			callback(status);
-		});
-	},
-	
-	editemail:(user,callback)=>{
-		var sql="update student set email=? where username=?";
-		db.execute(sql,[user.newemail,user.username],(status)=>{
-			callback(status);
-		});
-	},
-
-	editphone:(user,callback)=>{
-		var sql="update student set phone=? where username=?";
-		db.execute(sql,[user.newphone,user.username],(status)=>{
-			callback(status);
-		});
-	},
-	editusername:(user,callback)=>{
-		var sql="update student set username=? where username=?";
-		var sql1="update userlogin set userid=? where userid=?"
-		db.execute(sql,[user.newusername,user.username],(status)=>{
-			if(status){
-				db.execute(sql1,[user.newusername,user.username], function(status){
-					callback(status);
-				});
-			}	
-		});
-	},
-
-	updatepassword:(user,callback)=>{
-		var sql="update student set password=? where username=?";
-		var sql1="update userlogin set password=? where userid=?";
-		db.execute(sql,[user.newpassword,user.username],(status)=>{
-			if(status){
-				db.execute(sql1,[user.newpassword,user.username], function(status){
-					callback(status);
-				});
-			}
-			});
 	},
 	delete: function(id, callback){
 		var sql = "delete from student where id="+id;

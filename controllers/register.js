@@ -23,6 +23,7 @@ router.post('/student',(req,res)=>{
         res.redirect('/register/student');
     }
     else{
+        
         usermodel.insertintostudent(user,(status)=>{
             if(status) {
                 console.log('Successfully Added to Student Table');
