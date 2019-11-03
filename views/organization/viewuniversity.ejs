@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>User page</title>
+</head>
+<body>
+        <h1>Search</h1>
+        <a href="/organization/userlist">Back</a> | 
+        <a href="/logout">logout</a> 
+    <form method="POST">
+        <table border="1">
+                <tr>
+                        <td> Select University </td>
+                        <td> <select id="volume" name="university">
+                 
+                             <%
+                             
+                             for ( var i = 0; i < users.length; i++ )
+                             {
+                                 var selected = ( users[i].volume == i ) ? "selected" : "";
+                                 %><option value="<%=users[ i ].Name %>" <%=selected %>><%=users[ i ].Name %></option><%
+                             }
+                             %>
+                             </select>
+                            </td>
+                     </tr>
+                   
+                     <tr>
+                            <td colspan="2"><center>
+                                    <input type="submit" name="submit" value="Search">
+                            </center> </td>
+                     </tr>
+        </table>
+    </form>
+    
+</body>
+</html>

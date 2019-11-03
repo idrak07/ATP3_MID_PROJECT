@@ -2,15 +2,72 @@
 <html>
 <head>
 	<title>Home page</title>
+	<style>
+			#createpage{
+			  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+			 border-collapse:collapse ;
+			  width: 50%;
+			  
+			  padding: 8px;
+			  border: 1px solid  #4CAF50;
+			  
+	
+			}
+	
+			#createpage td, #login th {
+			  border: 1px solid #ddd;
+			  padding: 8px;
+			  text-align: center;
+	
+			}
+	
+			#createpage th {
+				background-color: rgb(83, 76, 175);
+			}
+	
+			#createpage tr:nth-child(even){background-color:rgb(17, 3, 5);}
+			#createpage tr:nth-child(odd){background-color: #280536;}
+	
+			#createpage tr:hover {background-color: rgba(221, 221, 221, 0.267);}
+	
+	
+	
+			.create {
+				background-color: #4CAF50;
+			   border: none;
+				 color: #4CAF50;
+			   padding: 8px 12px;
+			   text-align: center;
+			   text-decoration: none;
+			   display: inline-block;
+			   font-size: 16px;
+			   margin: 4px 2px;
+			   cursor: pointer;
+			   align-self: center;
+			   
+				   }
+			
+		</style>
 </head>
 <body>
-	<h1>Welcome Home!</h1>
-	<a href="/organization/profile">Profile</a> | 
-	<a href="/organization/userList">UserList</a> | 
-	<a href="/organization/offer">Offer</a>|
+		<h1>Welcome Home!</h1>
+	<table id="createpage" border="1">
+		<tr>
+				<td><a href="/organization/home">Home</a> </td>
+				<td><a href="/organization/profile">Profile</a> </td>
+				<td><a href="/organization/userlist">Approve</a> </td>
+				<td><a href="/organization/offer">Offer</a></td>
+				<td><a href="/logout">Logout</a></td>
+				 
+				 
+				
+				
+				
+				
+			
+		</tr>
+	</table>
 	
 	
-	<a href="/logout">Logout</a>
-
 </body>
 </html>

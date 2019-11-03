@@ -1,5 +1,6 @@
 var express=require('express');
-var usermodel=require('./../models/user-model');
+var organModel = require('../models/organization-model');
+//var usermodel=require('./../models/user-model');
 var router=express.Router();
 router.get('/',(req,res)=>{
     res.render('register/index');
@@ -39,6 +40,42 @@ router.get('/university',(req,res)=>{
 });
 
 router.get('/organization',(req,res)=>{
-    res.render('register/organization');
+        res.render('register/organization');
+});
+router.post('/organization', function(request, response){
+
+	var user = {
+        organizationName: request.body.Organizationname,
+        organizationCode:request.body.Organizationcode,
+        address: request.body.Organizationaddress,
+        email:request.body.Emailaddress,
+        contact:request.body.Organizationcontact,
+		username: request.body.username,
+		password: request.body.password,
+		confirmpass:request.body.confirmpassword,
+		
+	};
+	if(user.organizationName=='' || user.organizationCode=='' || user.address=='' ||user.email==''||user.contact=='' || user.username==''|| user.password==''||user.confirmpass=='')
+		{
+		    response.redirect('/register/organization');
+		 
+		}
+	if(user.password==user.confirmpass)
+	{
+		organModel.insertOeganizationLogin(user, function(status){
+			console.log('or',status);
+			if(status){
+				response.redirect('/login');
+			}else{
+				response.redirect('/register/organization');
+			}
+		});
+	}
+	else{
+		console.log('passward not');
+	}
+	
+
+	
 });
 module.exports = router;
