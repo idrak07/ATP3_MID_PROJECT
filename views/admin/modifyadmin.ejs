@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #105A43;
+}
+
+li {
+  float: left;
+  width: 25%;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 25px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #06261D;
+}
+</style>
+</head>
+<body>
+	<table border="0" width="100%">
+		
+		<tr class="heading">
+			<td>
+				<p><font style="font-style: italic;" color="#313D3A" size="8"><b>Scholarship Portal</b></font></p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<ul>
+					<li><a href="/admin">Home</a></li>
+					<li><a href="/admin/search">Search Admin</a></li>
+					<li><a href="/admin/addadmin">Add Admin</a></li>
+					<li><a href="/logout">Log Out</a></li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+
+	<fieldset >
+	    <legend>Modify Admin</legend>
+	    <center>
+	        <form method="post" >
+	            <table border="0">
+					<tr>
+						<td>Admin Id </td>
+						<td><%= userid %></td>
+					</tr>
+					<tr>
+						<td height="50px">Admin Name</td>
+						<td height="50px"><input type="text" name="username" value="<%= username %>"></td><br>
+					</tr>
+					<tr>
+						<td height="50px">Salary</td>
+						<td height="50px"><input type="text" name="salary" value="<%= salary %>"></td><br>
+					</tr>
+					<tr>
+						<td height="50px">Email</td>
+						<td height="50px"><input type="text" name="email" value="<%= email %>"></td><br>
+					</tr>
+					<tr>
+						<td colspan="2" align="center"><input type="submit" name="submit" value="update"></td>
+						
+					</tr>
+				</table>
+	        </form>
+	    </center>
+		
+	</fieldset>
+
+
+
+
+
+</body>
+</html>
