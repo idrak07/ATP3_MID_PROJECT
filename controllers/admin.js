@@ -7,7 +7,7 @@ var router = express.Router();
 router.get('/', function(request, response){
 
 		if(request.cookies['username'] != null){
-			if(request.cookies['userstatus']==0)
+			if(request.cookies['userstatus']==0 || request.cookies['userstatus']==4)
 			{
 				response.render('admin/index');
 			}		
@@ -23,7 +23,7 @@ router.get('/', function(request, response){
 router.get('/adminpanel', function(request, response){
 
 		if(request.cookies['username'] != null){
-			if(request.cookies['userstatus']==0)
+			if(request.cookies['userstatus']==0 || request.cookies['userstatus']==4)
 			{
 				response.redirect('/admin/search')
 				//response.render('admin/adminpanel01');
@@ -39,9 +39,35 @@ router.get('/adminpanel', function(request, response){
 router.get('/payment', function(request, response){
 
 		if(request.cookies['username'] != null){
-			if(request.cookies['userstatus']==0)
+			if(request.cookies['userstatus']==0 || request.cookies['userstatus']==4)
 			{
-				response.send('i am In Payment Panel');
+				response.redirect('/admin/myaccount');
+			}		
+			else{
+				response.redirect('/logout');
+			}
+		}else{
+			response.redirect('/logout');
+		}	
+});
+router.get('/myaccount', function(request, response){
+
+		if(request.cookies['username'] != null){
+			if(request.cookies['userstatus']==0 || request.cookies['userstatus']==4)
+			{
+				var userid=request.cookies['username'];
+				console.log(userid);
+				adminModel.getmybalance(userid,function(exist , results){
+					if(exist){
+						response.render('admin/payment_index',results);
+						//response.send(results);
+					}
+					else
+					{
+						response.redirect('/admin');
+					}
+				})
+				
 			}		
 			else{
 				response.redirect('/logout');
@@ -84,7 +110,7 @@ router.get('/analyse', function(request, response){
 router.get('/search', function(request, response){
 
 		if(request.cookies['username'] != null){
-			if(request.cookies['userstatus']==0)
+			if(request.cookies['userstatus']==0 || request.cookies['userstatus']==4)
 			{
 				response.render('admin/search01');
 			}		
@@ -98,7 +124,7 @@ router.get('/search', function(request, response){
 router.get('/search/id', function(request, response){
 
 		if(request.cookies['username'] != null){
-			if(request.cookies['userstatus']==0)
+			if(request.cookies['userstatus']==0 || request.cookies['userstatus']==4)
 			{
 				response.render('admin/searchbyid');
 			}		
@@ -112,7 +138,7 @@ router.get('/search/id', function(request, response){
 router.get('/search/name', function(request, response){
 
 		if(request.cookies['username'] != null){
-			if(request.cookies['userstatus']==0)
+			if(request.cookies['userstatus']==0 || request.cookies['userstatus']==4)
 			{
 				response.render('admin/searchbyname');
 			}		
@@ -126,7 +152,7 @@ router.get('/search/name', function(request, response){
 router.get('/modifyadmin/:userid', function(request, response){
 
 		if(request.cookies['username'] != null){
-			if(request.cookies['userstatus']==0)
+			if(request.cookies['userstatus']==0 || request.cookies['userstatus']==4 )
 			{
 				var userid=request.params.userid;
 				adminModel.getuserbyid(userid,function(exist , results){
@@ -141,7 +167,7 @@ router.get('/modifyadmin/:userid', function(request, response){
 				})
 			}		
 			else{
-				response.redirect('/logout');
+				response.send('You do not have authority');
 			}
 		}else{
 			response.redirect('/logout');
@@ -170,7 +196,7 @@ router.post('/modifyadmin/:userid', function(request, response){
 				});
 			}		
 			else{
-				response.redirect('/logout');
+				response.send('You do not have authority');
 			}
 		}else{
 			response.redirect('/logout');
@@ -180,7 +206,7 @@ router.post('/modifyadmin/:userid', function(request, response){
 router.get('/namelist/:name', function(request, response){
 
 		if(request.cookies['username'] != null){
-			if(request.cookies['userstatus']==0)
+			if(request.cookies['userstatus']==0 || request.cookies['userstatus']==4)
 			{
 				var name=request.params.name;
 				adminModel.getuserbyname(name,function(exist , results){
@@ -220,7 +246,7 @@ router.get('/modifyadmin', function(request, response){
 router.post('/search/id', function(request, response){
 
 		if(request.cookies['username'] != null){
-			if(request.cookies['userstatus']==0)
+			if(request.cookies['userstatus']==0 || request.cookies['userstatus']==4)
 			{
 				var userid = request.body.id;
 				//response.send(userid);
@@ -237,7 +263,7 @@ router.post('/search/id', function(request, response){
 router.post('/search/name', function(request, response){
 
 		if(request.cookies['username'] != null){
-			if(request.cookies['userstatus']==0)
+			if(request.cookies['userstatus']==0 || request.cookies['userstatus']==4)
 			{
 				var name = request.body.name;
 				response.redirect('/admin/namelist/'+name);
