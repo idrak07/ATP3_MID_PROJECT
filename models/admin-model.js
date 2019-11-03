@@ -51,6 +51,13 @@ module.exports = {
 		db.execute(sql, [user.username, user.salary, user.email,user.userid], function(status){
 			callback(status);
 		});
+	},
+	withdrawamount: function(user, callback){
+		var sql ="UPDATE `admininfo` SET `balance`=(balance-?) WHERE `userid`=?";
+	
+		db.execute(sql, [user.withdrawamount,user.userid], function(status){
+			callback(status);
+		});
 	}
 }
 

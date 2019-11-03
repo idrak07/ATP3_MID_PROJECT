@@ -49,7 +49,7 @@ li a:hover {
 		
 	</table>
 	<fieldset >
-	    <legend>My Account</legend>
+	    <legend>Withdraw</legend>
 	    <center>
 	        <form method="post" >
 	            <table border="0">
@@ -62,15 +62,16 @@ li a:hover {
 						<td height="50px"><%= username %></td><br>
 					</tr>
 					<tr>
-						<td height="50px">Salary</td>
-						<td height="50px"><%= salary %></td><br>
-					</tr>
-					<tr>
 						<td height="50px">Balance</td>
 						<td height="50px"><%= balance %></td><br>					
 					</tr>
 					<tr>
-						<td colspan="2" align="center"><a href="/admin/myaccount/withdraw/<%= userid %>"><button type="button" formaction="">Withdraw </button></a></td>
+						<td height="50px">Withdraw Amount </td>
+						<td height="50px"><input type="number" name="withdrawamount" max="<%= balance %>" min="0" value=""></td><br>					
+					</tr>
+					<tr>
+						<td><a href="/admin/myaccount"><button type="button" formaction="">Back</button></a></td>
+						<td><input type="submit" name="submit" value="Withdraw"> </td>
 					</tr>
 				</table>
 	        </form>

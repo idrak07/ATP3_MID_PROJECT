@@ -75,6 +75,63 @@ router.get('/myaccount', function(request, response){
 		}else{
 			response.redirect('/logout');
 		}	
+}); 
+
+router.get('/myaccount/withdraw/:userid', function(request, response){
+
+		if(request.cookies['username'] != null){
+			if(request.cookies['userstatus']==0 || request.cookies['userstatus']==4)
+			{
+				var id=request.params.userid;
+				console.log(id);
+				adminModel.getmybalance(id,function(exist , results){
+					if(exist){
+						response.render('admin/withdraw',results);
+						//response.send(results);
+					}
+					else
+					{
+						response.redirect('/admin');
+					}
+				})
+				
+			}		
+			else{
+				response.redirect('/logout');
+			}
+		}else{
+			response.redirect('/logout');
+		}	
+});
+
+
+router.post('/myaccount/withdraw/:userid', function(request, response){
+
+		if(request.cookies['username'] ==request.params.userid ){
+			if(request.cookies['userstatus']==0 || request.cookies['userstatus']==4)
+			{
+				 
+				var user = {
+					withdrawamount: request.body.withdrawamount ,
+					userid:request.params.userid
+				};
+				adminModel.withdrawamount(user, function(status){
+					if(status){
+						response.redirect('/admin');
+					}
+					else{
+						response.send ('Something Went Wrong :)');
+					}
+
+				})
+				
+			}		
+			else{
+				response.send('You do not have authority');
+			}
+		}else{
+			response.redirect('/logout');
+		}	
 });
 
 router.get('/modifyscholarship', function(request, response){
