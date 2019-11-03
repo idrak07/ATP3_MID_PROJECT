@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add offer page</title>
+</head>
+<body>
+        <h1> SCHOLARSHIP</h1>
+        <a href="/organization">Back</a> | 
+        <a href="/organization/offershow">Detalis</a>|
+        <a href="/organization/offerdelate">Delate</a>|
+        <a href="/logout">logout</a> 
+                        
+<form method="post" >
+
+   
+	<table  border="1">
+		<tr>
+            <td> Select University </td>
+            <td> <select id="volume" name="university">
+     
+                 <%
+                 
+                 for ( var i = 0; i < users.length; i++ )
+                 {
+                     var selected = ( users[i].volume == i ) ? "selected" : "";
+                     %><option value="<%=users[ i ].Name %>" <%=selected %>><%=users[ i ].Name %></option><%
+                 }
+                 %>
+                 </select>
+                </td>
+         </tr>
+         <tr>
+             <td> Program </td>
+             <td>
+                <div>
+                    <input type = "radio" name = "program" value = "BSC"> BSC 
+                    <input type = "radio" name = "program" value = "MSC"> MSC 
+                     
+                </div>
+            
+             </td>
+         </tr>
+         <tr>
+                <td>Scholarship </td>
+                <td>
+                   <div>
+                       <input type = "radio" name = "scholarship" value = "Full scholarship"> Full Scholarship 
+                       <input type = "radio" name = "scholarship" value = "Partial scholarship"> Partial Scholarship
+                        
+                   </div>
+               
+                </td>
+            </tr>
+         <tr>
+                <td>Number of Student:</td>
+                <td><input type="text" name="number"></td>
+            </tr>
+            <tr>
+                    <td>Application Deadline</td>
+                    <td><input type="date" name="date"></td>
+                </tr>
+            
+				<tr>
+                        <td colspan="2">
+                            <center>
+                                    <input type="submit" name="submit" value="Submit">
+                            </center>
+                        </td>
+                    </tr> 
+
+		
+	</table>
+	</form>
+	
+
+</body>
+</html>

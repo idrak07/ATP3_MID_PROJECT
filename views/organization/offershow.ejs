@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>offer page</title>
+</head>
+<body>
+	<h1>SCHOLARSHIP OFFER</h1>
+	<a href="/organization/offer">Back</a> | 
+	<a href="/logout">logout</a>
+	
+	<table border="1">
+		<tr>
+			<td>ID</td>
+			<td>Organization Name</td>
+            <td>University</td>
+            <td>Program</td>
+            <td>Number of Student</td>
+            <td>Scholarship</td>
+            <td>Application Deadline</td>
+			<td>ACTION</td>
+		</tr>
+
+	<% for(var i=0; i < users.length; i++){ %>
+
+		<tr>
+			<td><%= users[i].ID %></td>
+			<td><%= users[i].orName %></td>
+            <td><%= users[i].university %></td>
+            <td><%= users[i].program %></td>
+            <td><%= users[i].number%></td>
+            <td><%= users[i].scholarship%></td>
+            <td><%= users[i].date %></td>
+			<td>
+				<a href="/organization/updateoffer/<%= users[i].ID %>">Update</a> | 
+				<a href="/organization/delete/<%= users[i].ID %>">Delete</a> | 
+				<a href="/organization/details/<%= users[i].ID %>">Details</a>
+			</td>
+		</tr>
+	<% } %>
+
+	</table>
+
+
+</body>
+</html>
