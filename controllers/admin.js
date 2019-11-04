@@ -52,6 +52,73 @@ router.get('/addadmin', function(request, response){
 			response.redirect('/logout');
 		}	
 });
+
+router.get('/clearpayment', function(request, response){
+
+		if(request.cookies['username'] != null){
+			if(request.cookies['userstatus']==0)
+			{
+				adminModel.getAdminList(function(exist, results){
+					if(exist){
+						var users=results;
+						console.log(users);
+						response.render('admin/clearpayment',{users}) ;
+					}
+					else{
+						response.send('No Payments Left');
+					}
+
+				})
+				//response.render('admin/clearpayment') ; 
+				//response.render('admin/adminpanel01');
+			}		
+			else{
+				response.redirect('/admin');
+			}
+		}else{
+			response.redirect('/logout');
+		}	
+});
+
+router.get('/clearpayment/:userid', function(request, response){
+
+		if(request.cookies['username'] != null){
+			if(request.cookies['userstatus']==0)
+			{
+				var userid=request.params.userid;
+				adminModel.getpaymentstatus(userid, function(exist,paymentstatus){
+					if(exist){
+						
+						if(paymentstatus==0){
+							adminModel.clearpayment(userid,function(status){
+								if(status){
+									response.send('Done');
+								}
+								else
+								{
+									response.send('Something Went Wrong');
+								}
+							})
+						}
+						else{
+							response.send('Payment Already Done for this month');
+						}
+					}
+					else{
+						response.send('No User By this Id');
+					}
+
+				})
+				//response.render('admin/clearpayment') ; 
+				//response.render('admin/adminpanel01');
+			}		
+			else{
+				response.redirect('/admin');
+			}
+		}else{
+			response.redirect('/logout');
+		}	
+});
 router.post('/addadmin', function(request, response){
 
 		if(request.cookies['username'] != null){
@@ -390,6 +457,3 @@ router.post('/search/name', function(request, response){
 		}	
 });
 module.exports = router;
-
-
-
