@@ -52,6 +52,13 @@ module.exports = {
 			callback(status);
 		});
 	},
+	addadmin: function(user, callback){
+		var sql ="INSERT INTO `admininfo`(`userid`, `username`, `salary`, `balance`, `email`) VALUES (?,?,?,?,?)";
+	
+		db.execute(sql, [user.id,user.name, user.salary, user.balance,user.email], function(status){
+			callback(status);
+		});
+	},
 	withdrawamount: function(user, callback){
 		var sql ="UPDATE `admininfo` SET `balance`=(balance-?) WHERE `userid`=?";
 	

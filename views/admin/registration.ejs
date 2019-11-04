@@ -49,28 +49,28 @@ li a:hover {
 	</table>
 
 	<fieldset >
-	    <legend>Modify Admin</legend>
+	    <legend>Add Admin</legend>
 	    <center>
-	        <form method="post" >
+	        <form method="post">
 	            <table border="0">
 					<tr>
 						<td>Admin Id </td>
-						<td><%= userid %></td>
+						<td height="50px"><input type="text" name="userid" value=""></td><br>
 					</tr>
 					<tr>
 						<td height="50px">Admin Name</td>
-						<td height="50px"><input type="text" name="username" value="<%= username %>"></td><br>
+						<td height="50px"><input type="text" name="username" value=""></td><br>
 					</tr>
 					<tr>
 						<td height="50px">Salary</td>
-						<td height="50px"><input type="number" name="salary" value="<%= salary %>"></td><br>
+						<td height="50px"><input type="number" name="salary" min="10000" value=""></td><br>
 					</tr>
 					<tr>
 						<td height="50px">Email</td>
-						<td height="50px"><input type="email" name="email" value="<%= email %>"></td><br>
+						<td height="50px"><input type="email" name="email" value=""></td><br>
 					</tr>
 					<tr>
-						<td colspan="2" align="center"><input type="submit" name="submit" value="update"></td>
+						<td colspan="2" align="center"><input type="submit" name="submit" value="Add Admin"></td>
 						
 					</tr>
 				</table>

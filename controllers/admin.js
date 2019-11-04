@@ -36,6 +36,60 @@ router.get('/adminpanel', function(request, response){
 		}	
 });
 
+
+router.get('/addadmin', function(request, response){
+
+		if(request.cookies['username'] != null){
+			if(request.cookies['userstatus']==0)
+			{
+				response.render('admin/registration') ; 
+				//response.render('admin/adminpanel01');
+			}		
+			else{
+				response.redirect('/admin');
+			}
+		}else{
+			response.redirect('/logout');
+		}	
+});
+router.post('/addadmin', function(request, response){
+
+		if(request.cookies['username'] != null){
+			if(request.cookies['userstatus']==0)
+			{
+				var b =0 ;
+				var user={
+					id:request.body.userid,
+					name:request.body.username,
+					salary:request.body.salary,
+					email:request.body.email , 
+					balance:b
+				}
+				adminModel.getuserbyid(user.id,function(status,result){
+					if(status){
+						response.send('User Id Already Taken');
+					}
+					else
+					{
+						adminModel.addAdmin(user , function(status){
+							if(status){
+								response.redirect('/admin/addadmin');
+							}
+							else{
+								response.send('Something Went wrong');
+							}
+
+						})
+					}
+				})
+			}		
+			else{
+				response.redirect('/admin');
+			}
+		}else{
+			response.redirect('/logout');
+		}	
+});
 router.get('/payment', function(request, response){
 
 		if(request.cookies['username'] != null){
